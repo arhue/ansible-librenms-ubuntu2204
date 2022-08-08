@@ -49,6 +49,7 @@
     state: directory
     owner: "{{ librenms_user }}"
     group: "{{ librenms_group }}"
+    recurse: yes
   when:
     - librenms_rrdcached is defined
   notify:
