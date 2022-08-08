@@ -20,19 +20,19 @@
 
 - name: Set PHP CLI timezone
   community.general.ini_file:
-    path: /etc/php/{{ php_version }}/cli/php.ini
+    path: "/etc/php/{{ php_version }}/cli/php.ini"
     section: Date
     option: date.timezone
-    value: {{ php_timezone }}
+    value: "{{ php_timezone }}"
     mode: '0644'
     backup: yes
 
 - name: Set PHP FPM timezone
   community.general.ini_file:
-    path: /etc/php/{{ php_version }}/fpm/php.ini
+    path: "/etc/php/{{ php_version }}/fpm/php.ini"
     section: Date
     option: date.timezone
-    value: {{ php_timezone }}
+    value: "{{ php_timezone }}"
     mode: '0644'
     backup: yes
 
