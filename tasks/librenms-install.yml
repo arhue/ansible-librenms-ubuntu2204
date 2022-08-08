@@ -82,7 +82,3 @@
     dest: /etc/logrotate.d/librenms
     remote_src: true
     mode: 0644
-
-- name: Deploy librenms nginx config
-  ansible.builtin.copy:
-  src: 
