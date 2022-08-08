@@ -52,23 +52,7 @@ $config['bad_if_regexp'][] = '{{ librenms_config_bad_if_regexp }}';
 $config['auth_mechanism']                       = '{{ librenms_config_auth_mechanism }}';
 {% if librenms_config_ldap %}
 ### Authentication Model / LDAP configuration
-$config['auth_ldap_server']                     = '{{ librenms_config_auth_ldap_server }}'; // Set server(s), space separated. Prefix with ldaps:// for ssl
-$config['auth_ldap_suffix']                     = ',{{ librenms_config_auth_ldap_suffix }}';       // appended to usernames
-$config['auth_ldap_groupbase']                  = '{{ librenms_config_auth_ldap_groupbase }}';       // all groups must be inside this
-$config['auth_ldap_groups']['admins']['level']  = 10;                                   // set admin group to admin level
-
-$config['auth_ldap_port']                       = 686;                                  // 389 or 636 for ssl
-$config['auth_ldap_starttls']                   = False;                                // Enable TLS on port 389
-$config['auth_ldap_prefix']                     = 'uid=';                               // prepended to usernames
-$config['auth_ldap_group']                      = '{{ librenms_config_auth_ldap_group }}';      // generic group with level 0
-$config['auth_ldap_groupmemberattr']            = 'memberUid';                          // attribute to use to see if a user is a member of a group
-$config['auth_ldap_uid_attribute']              = 'uidNumber';                          // attribute for unique id
-$config['auth_ldap_debug']                      = false;                                // enable for verbose debug messages
-$config['auth_ldap_userdn']                     = false;                                // Uses a users full DN as the value of the member attribute in a group instead of member: username. (it’s member: uid=username,ou=groups,dc=domain,dc=com)
-
-$config['auth_ldap_binddn']                     = '{{ librenms_config_auth_ldap_binddn }}';        // overrides binduser
-$config['auth_ldap_bindpassword']               = '{{ librenms_config_auth_ldap_bindpassword }}';
-
+{{ librenms_config_ldap_conf }}
 {% endif %}
 
 # Use SNMP instead of sysname

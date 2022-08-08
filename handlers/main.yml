@@ -1,5 +1,15 @@
 ---
-- name: restart apache
+- name: restart nginx
   ansible.builtin.service:
-    name: "apache2"
+    name: "nginx"
+    state: "restarted"
+
+- name: restart php
+  ansible.builtin.service:
+    name: "php-fpm"
+    state: "restarted"
+
+- name: restart rrdcached
+  ansible.builtin.service:
+    name: "rrdcached"
     state: "restarted"

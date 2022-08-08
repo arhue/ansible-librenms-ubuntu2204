@@ -17,9 +17,7 @@ This role supports configuring
 
 The default credentials for the installation are `admin` / `admin`.
 
-Have a look at
-[tobias_richter.rrdcached](https://galaxy.ansible.com/tobias_richter/rrdcached)
-for setting up rrdcached on your server.
+RRDcached is setup on the server unless you remove `librenms_rrdcached` variable.
 
 ## Requirements
 

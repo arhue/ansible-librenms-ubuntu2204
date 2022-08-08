@@ -4,6 +4,13 @@
     path: /opt/librenms/config.php
   register: __librenms_config
 
+- name: Deploy nginx librenms config
+  ansible.builtin.template:
+    src: etc/nginx/librenms.j2
+    dest: /etc/nginx/sites-enabled/librenms
+  notify:
+    - restart nginx
+
 - name: Deploy config.php
   ansible.builtin.template:
     src: opt/librenms/config.php.j2

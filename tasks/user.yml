@@ -17,6 +17,7 @@
     system: yes
     state: present
   notify:
+    - restart php
     - restart nginx
 
 - name: Add www-data to librenms group.
@@ -26,4 +27,5 @@
       - www-data
       - librenms
   notify:
+    - restart php
     - restart nginx

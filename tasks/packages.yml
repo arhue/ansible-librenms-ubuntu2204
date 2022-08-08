@@ -3,3 +3,10 @@
   ansible.builtin.apt:
     name: "{{ librenms_packages }}"
     cache_valid_time: 3600
+
+- name: install rrdcached package.
+  ansible.builtin.apy:
+    name: rrdcached
+    cache_valid_time: 3600
+  when:
+    -  librenms_rrdcached is defined

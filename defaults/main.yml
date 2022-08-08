@@ -142,14 +142,10 @@ librenms_config_snmp_authlevel: authPriv
 
 # When set to true ldap is configured and the other ldap variables must be set
 librenms_config_ldap: false
-# The server to use
-librenms_config_auth_ldap_server:  # e.g. ldap.main.corp
-# The server to use
-librenms_config_auth_ldap_suffix:  # e.g. "ou=users,ou=location,dc=main,dc=corp"
-librenms_config_auth_ldap_groupbase:  # e.g. "ou=groups,ou=location,dc=main,dc=corp"
-librenms_config_auth_ldap_group:  # e.g. "cn=all,ou=groups,ou=location,dc=main,dc=corp"
-librenms_config_auth_ldap_binddn:  # e.g. "uid=ldapbind,ou=system,ou=location,dc=main,dc=corp"
-librenms_config_auth_ldap_bindpassword:  # e.g. "password_from_ldapbinduser"
+# ldap config
+#librenms_config_ldap_conf: |
+   
+
 
 # Enables, disables proxmox in librenms
 librenms_config_enable_proxmox: 1
@@ -169,7 +165,8 @@ librenms_config_influxdb_password: librenms
 
 # The services to restart when php.ini was touched
 librenms_php_restart_services:
-  - apache2
+  - php-fpm
+  - nginx
 
 librenms_nagios_plugins_dir: /usr/lib/nagios/plugins
 
