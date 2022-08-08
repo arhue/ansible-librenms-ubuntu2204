@@ -1,8 +1,6 @@
-# tobias_richter.librenms
+# ansible-librenms-ubuntu2204
 
-[![Build Status](https://github.com/tobias-richter/ansible-librenms/workflows/CI/badge.svg)](https://github.com/tobias-richter/ansible-librenms/actions)
-
-This role installs and configures librems.
+This role installs and configures librems for Ubuntu 22.04 with Nginx and PHP-FPM.
 
 This role supports configuring
 * `ignore_mount`
@@ -41,5 +39,5 @@ This playbook setups librenms.
 
     - hosts: apt_config
 	  roles:
-	    - role: tobias_richter.librenms
+	    - role: ansible-librenms-ubuntu2204
     librenms_sql_db_password: librenmsdbpassword 

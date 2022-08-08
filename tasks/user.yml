@@ -17,7 +17,7 @@
     system: yes
     state: present
   notify:
-    - restart apache
+    - restart nginx
 
 - name: Add www-data to librenms group.
   ansible.builtin.user:
@@ -26,4 +26,4 @@
       - www-data
       - librenms
   notify:
-    - restart apache
+    - restart nginx

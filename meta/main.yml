@@ -1,19 +1,15 @@
 ---
 galaxy_info:
   role_name: librenms
-  author: Tobias Richter
-  description: Ansible Role for setting up and managing librenms.
+  author: Varun Priolkar
+  description: Ansible Role for setting up and managing librenms on Ubuntu 22.04
   license: Apache
   min_ansible_version: "2.9"
 
   platforms:
-    - name: Debian
-      versions:
-        - buster
-        - bullseye
     - name: Ubuntu
       versions:
-        - bionic
+        - jammy
 
   galaxy_tags:
     - librenms
@@ -32,6 +28,7 @@ dependencies:
       mysql_bind_address: '127.0.0.1'
       mysql_innodb_file_per_table: "1"
       mysql_lower_case_table_names: "0"
+      mysql_innodb_flush_log_at_trx_commit: "2"
     tags:
       - mysql
       - dependency

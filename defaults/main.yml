@@ -2,7 +2,6 @@
 # package to install
 librenms_packages:
   - curl
-  - apache2
   - composer
   - fping
   - git
@@ -10,8 +9,6 @@ librenms_packages:
   - imagemagick
   - mtr-tiny
   - nmap
-  - python3-memcache
-  - python3-mysqldb
   - rrdtool
   - snmp
   - snmpd
@@ -19,7 +16,27 @@ librenms_packages:
   - acl
   - monitoring-plugins
   - nagios-plugins-contrib
+  - nginx-full
+  - php-cli
+  - php-curl
+  - php-fpm
+  - php-gd
+  - php-gmp
+  - php-json
+  - php-mbstring
+  - php-mysql
+  - php-snmp
+  - php-xml
+  - php-zip
+  - unzip
+  - python3-pymysql
+  - python3-dotenv
+  - python3-redis
+  - python3-setuptools
+  - python3-systemd
   - python3-pip
+  - python3-mysqldb
+  - python3-memcache
 
 # User and group to create with home directory
 librenms_user: librenms
@@ -107,7 +124,7 @@ librenms_rrdcached: unix:/run/rrdcached.sock
 librenms_rrdtool_version: 1.7.2
 
 # Parallel threads for the librenms poller
-librenms_poller_threads: 3
+librenms_poller_threads: 8
 
 # Networks for autodiscovery
 librenms_config_nets: []

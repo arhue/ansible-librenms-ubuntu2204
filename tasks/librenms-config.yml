@@ -12,7 +12,8 @@
     group: "{{ librenms_group }}"
     mode: 0640
   notify:
-    - restart apache
+    - restart php
+    - restart nginx
 
 - name: Deploy librenms cron config.
   ansible.builtin.template:
