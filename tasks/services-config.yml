@@ -78,7 +78,8 @@
 - name: Enable services
   ansible.builtin.service:
     name: "{{ item }}"
-    state: enabled
+    state: started
+    enabled: yes
   loop:
     - nginx
     - php{{ php_version }}-fpm
