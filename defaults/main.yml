@@ -28,6 +28,8 @@ librenms_packages:
   - php-snmp
   - php-xml
   - php-zip
+  - php-ldap
+  - php-opcache
   - unzip
   - python3-pymysql
   - python3-dotenv
