@@ -76,6 +76,16 @@
   notify:
     - restart snmpd
 
+- name: Enable opcache
+  ansible.builtin.copy:
+    src: 10-opcache.ini
+    dest: /etc/php/{{ php_version }}/fpm/conf.d/10-opcache.ini
+    owner: root
+    group: root
+    mode: 0777
+  notify:
+    - restart php
+
 - name: Enable services
   ansible.builtin.service:
     name: "{{ item }}"
@@ -86,3 +96,4 @@
     - php{{ php_version }}-fpm
     - snmpd
     - rrdcached
+
