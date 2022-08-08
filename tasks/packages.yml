@@ -6,7 +6,8 @@
 
 - name: install rrdcached package.
   ansible.builtin.apy:
-    name: rrdcached
+    name:
+      - rrdcached
     cache_valid_time: 3600
   when:
     -  librenms_rrdcached is defined
