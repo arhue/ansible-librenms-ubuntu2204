@@ -60,18 +60,18 @@
     dest: /usr/bin/distro
     mode: 0755
 
+- name: Change community string in snmpd
+  ansible.builtin.replace:
+    path: /opt/librenms/snmpd.conf.example
+    regexp: 'RANDOMSTRINGGOESHERE'
+    replace: 'transnomis'
+
 - name: Copy over file
   ansible.builtin.copy:
     remote_src: yes
     src: /opt/librenms/snmpd.conf.example
     dest: /etc/snmp/snmpd.conf
-    force: no
-
-- name: Change community string in snmpd
-  ansible.builtin.replace:
-    path: /etc/snmp/snmpd.conf
-    regexp: 'RANDOMSTRINGGOESHERE'
-    replace: 'transnomis'
+    force: yes
   notify:
     - restart snmpd
 
