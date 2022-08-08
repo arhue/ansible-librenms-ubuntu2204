@@ -1,9 +1,9 @@
 [librenms]
 user = {{ librenms_user }}
-group = {{ librenms_user }}
+group = {{ librenms_group }}
 listen = /run/php-fpm-librenms.sock
-listen.owner = www-data
-listen.group = www-data
+listen.owner = {{ librenms_user }}
+listen.group = {{ librenms_group }}
 pm = dynamic
 pm.max_children = 5
 pm.start_servers = 2
