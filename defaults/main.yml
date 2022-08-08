@@ -142,7 +142,7 @@ librenms_config_snmp_authlevel: authPriv
 
 # When set to true ldap is configured and the other ldap variables must be set
 librenms_config_ldap: false
-# ldap config
+# ldap config - Set LDAP config
 #librenms_config_ldap_conf: |
    
 
@@ -165,9 +165,11 @@ librenms_config_influxdb_password: librenms
 
 # The services to restart when php.ini was touched
 librenms_php_restart_services:
-  - php-fpm
+  - php8.1-fpm
   - nginx
 
+php_version: 8.1
+php_timezone: "America/Toronto"
 librenms_nagios_plugins_dir: /usr/lib/nagios/plugins
 
 librenms_nagios_plugins:

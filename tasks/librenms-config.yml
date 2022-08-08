@@ -4,12 +4,37 @@
     path: /opt/librenms/config.php
   register: __librenms_config
 
+- name: Deploy PHP FPM config
+  ansible.builtin.template:
+    src: etc/php/librenms.conf.j2
+    dest: /etc/php/{{ php_version }}/fpm/pool.d/librenms.conf
+  notify:
+    - restart php
+
 - name: Deploy nginx librenms config
   ansible.builtin.template:
     src: etc/nginx/librenms.j2
     dest: /etc/nginx/sites-enabled/librenms
   notify:
     - restart nginx
+
+- name: Set PHP CLI timezone
+  community.general.ini_file:
+    path: /etc/php/{{ php_version }}/cli/php.ini
+    section: Date
+    option: date.timezone
+    value: {{ php_timezone }}
+    mode: '0644'
+    backup: yes
+
+- name: Set PHP FPM timezone
+  community.general.ini_file:
+    path: /etc/php/{{ php_version }}/fpm/php.ini
+    section: Date
+    option: date.timezone
+    value: {{ php_timezone }}
+    mode: '0644'
+    backup: yes
 
 - name: Deploy config.php
   ansible.builtin.template:
