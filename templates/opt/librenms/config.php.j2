@@ -1,5 +1,5 @@
 <?php
-# {{ ansible_managed }} by tobias_richter.librenms
+# {{ ansible_managed }}
 ## Have a look in defaults.inc.php for examples of settings you can set here. DO NOT EDIT defaults.inc.php!
 
 ### Database config
@@ -46,7 +46,7 @@ $config['bad_if_regexp'][] = '{{ librenms_config_bad_if_regexp }}';
 
 ### Auto Discovery configuration
 {% for librenms_config_net in librenms_config_nets %}
-# $config['nets'][] = "{{ librenms_config_net }}";
+$config['nets'][] = "{{ librenms_config_net }}";
 {% endfor %}
 
 $config['auth_mechanism']                       = '{{ librenms_config_auth_mechanism }}';

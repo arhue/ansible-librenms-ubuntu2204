@@ -21,6 +21,11 @@
     - nagios-plugins
     - nagios
 
+- name: Configure services
+  ansible.builtin.import_tasks: services-config.yml
+  tags:
+    - services
+
 - name: Configure librenms.
   ansible.builtin.import_tasks: librenms-config.yml
   tags:

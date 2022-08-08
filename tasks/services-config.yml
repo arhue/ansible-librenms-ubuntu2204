@@ -1,0 +1,86 @@
+---
+- name: Deploy PHP FPM config
+  ansible.builtin.template:
+    src: etc/php/librenms.conf.j2
+    dest: /etc/php/{{ php_version }}/fpm/pool.d/librenms.conf
+  notify:
+    - restart php
+
+- name: Deploy nginx librenms config
+  ansible.builtin.template:
+    src: etc/nginx/librenms.j2
+    dest: /etc/nginx/sites-enabled/librenms
+  notify:
+    - restart nginx
+
+- name: Set PHP CLI timezone
+  community.general.ini_file:
+    path: "/etc/php/{{ php_version }}/cli/php.ini"
+    section: Date
+    option: date.timezone
+    value: "{{ php_timezone }}"
+    mode: '0644'
+    backup: yes
+
+- name: Set PHP FPM timezone
+  community.general.ini_file:
+    path: "/etc/php/{{ php_version }}/fpm/php.ini"
+    section: Date
+    option: date.timezone
+    value: "{{ php_timezone }}"
+    mode: '0644'
+    backup: yes
+
+- name: Deploy rrdcached config
+  ansible.builtin.template:
+    src: etc/rrdcached/rrdcached.j2
+    dest: /etc/default/rrdcached
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - librenms_rrdcached is defined
+  notify:
+    - restart rrdcached
+
+- name: Set rrdcached owner
+  ansible.builtin.file:
+    path: /var/lib/rrdcached/journal
+    state: directory
+    owner: "{{ librenms_user }}"
+    group: "{{ librenms_group }}"
+  when:
+    - librenms_rrdcached is defined
+  notify:
+    - restart rrdcached
+
+- name: Download /usr/bin/distro
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/librenms/librenms-agent/master/snmp/distro
+    dest: /usr/bin/distro
+    mode: 0755
+
+- name: Copy over file
+  ansible.builtin.copy:
+    remote_src: yes
+    src: /opt/librenms/snmpd.conf.example
+    dest: /etc/snmp/snmpd.conf
+    force: no
+
+- name: Change community string in snmpd
+  ansible.builtin.replace:
+    path: /etc/snmp/snmpd.conf
+    regexp: 'RANDOMSTRINGGOESHERE'
+    replace: 'transnomis'
+  notify:
+    - restart snmpd
+
+- name: Enable services
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: enabled
+  loop:
+    - nginx
+    - php{{ php_version }}-fpm
+    - snmpd
+    - rrdcached

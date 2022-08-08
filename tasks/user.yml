@@ -19,13 +19,3 @@
   notify:
     - restart php
     - restart nginx
-
-- name: Add www-data to librenms group.
-  ansible.builtin.user:
-    name: www-data
-    groups:
-      - www-data
-      - librenms
-  notify:
-    - restart php
-    - restart nginx

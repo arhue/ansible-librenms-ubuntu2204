@@ -13,3 +13,8 @@
   ansible.builtin.service:
     name: "rrdcached"
     state: "restarted"
+
+- name: restart snmpd
+  ansible.builtin.service:
+    name: "snmpd"
+    state: "restarted"
