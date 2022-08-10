@@ -27,9 +27,9 @@
   ansible.builtin.file:
     path: /opt/librenms/rrd/smokeping
     state: directory
-    owner: librenms
+    owner: smokeping
     group: librenms
-    mode: '0664'
+    mode: '0775'
   notify:
     - restart smokeping
 
@@ -37,9 +37,9 @@
   ansible.builtin.file:
     path: /opt/librenms/rrd/smokeping/__cgi
     state: directory
-    owner: librenms
+    owner: smokeping
     group: librenms
-    mode: '0664'
+    mode: '0775'
   notify:
     - restart smokeping
 
@@ -55,7 +55,7 @@
   ansible.builtin.lineinfile:
     path: /etc/smokeping/config.d/pathnames
     regexp: '^dyndir'
-    line: dyndir = /opt/librenms/rrd/smokeping/__cgi
+    line: /usr/share/smokeping/www/
   notify:
     - restart smokeping
 
