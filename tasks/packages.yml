@@ -12,4 +12,10 @@
   when:
     -  librenms_rrdcached is defined
 
-
+- name: install smokeping packages
+  ansible.builtin.apt:
+    name:
+      - smokeping
+      - fcgiwrap
+    cache_valid_time: 3600
+  when: librenms_config_enable_smokeping

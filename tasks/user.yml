@@ -19,3 +19,12 @@
   notify:
     - restart php
     - restart nginx
+
+- name: Add Smokeping to librenms group.
+  ansible.builtin.user:
+    name: smokeping
+    groups:
+      - smokeping
+      - librenms
+  notify:
+    - restart smokeping

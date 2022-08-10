@@ -26,6 +26,12 @@
   tags:
     - services
 
+- name: Setup Smokeping
+  ansible.builtin.import_tasks: smokeping.yml
+  tags:
+    - smokeping
+  when: librenms_config_enable_smokeping
+
 - name: Configure librenms.
   ansible.builtin.import_tasks: librenms-config.yml
   tags:

@@ -1,0 +1,80 @@
+---
+- name: Enable Smokeping cron
+  ansible.builtin.copy:
+    src: /opt/librenms/misc/smokeping-debian.example
+    dest: /etc/cron.hourly/librenms-smokeping
+    owner: root
+    group: root
+    remote_src: yes
+    mode: 0755
+  tags:
+    - cron
+
+- name: Copy smokeping configs
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: /etc/smokeping/config.d/{{ item }}
+    owner: root
+    group: root
+    mode: 0644
+ loop:
+   - Probes
+   - Targets
+  notify:
+    - restart smokeping
+
+
+- name: Create /opt/librenms/rrd/smokeping directory if it does not exist
+  ansible.builtin.file:
+    path: /opt/librenms/rrd/smokeping
+    state: directory
+    owner: librenms
+    group: librenms
+    mode: '0664'
+  notify:
+    - restart smokeping
+
+
+- name: Create /opt/librenms/rrd/smokeping/__cgi directory if it does not exist
+  ansible.builtin.file:
+    path: /opt/librenms/rrd/smokeping/__cgi
+    state: directory
+    owner: librenms
+    group: librenms
+    mode: '0664'
+  notify:
+    - restart smokeping
+
+
+- name: Fix smokeping rrdcached config
+  ansible.builtin.lineinfile:
+    path: /etc/smokeping
+    regexp: '^datadir'
+    line: datadir = /opt/librenms/rrd/smokeping
+  notify:
+    - restart smokeping
+
+- name: Fix smokeping rrdcached config
+  ansible.builtin.lineinfile:
+    path: /etc/smokeping
+    regexp: '^dyndir'
+    line: dyndir = /opt/librenms/rrd/smokeping/__cgi
+  notify:
+    - restart smokeping
+
+- name: Copy over fcgiwrap config
+  ansible.builtin.copy:
+    src: /usr/share/doc/fcgiwrap/examples/nginx.conf
+    dest: /etc/nginx/fcgiwrap.conf
+    owner: root
+    group: root
+    remote_src: yes
+    mode: 0755
+  notify:
+    - restart nginx
+
+- name: Enable services
+  ansible.builtin.service:
+    name: smokeping
+    state: started
+    enabled: yes

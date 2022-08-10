@@ -18,3 +18,10 @@
   ansible.builtin.service:
     name: "snmpd"
     state: "restarted"
+
+- name: restart smokeping
+  ansible.builtin.service:
+    name: "smokeping"
+    state: "restarted"
+
+

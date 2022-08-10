@@ -96,4 +96,3 @@
     - php{{ php_version }}-fpm
     - snmpd
     - rrdcached
-

@@ -1,0 +1,10 @@
+*** Targets ***
+
+probe = FPing
+
+menu = Top
+title = Network Latency Grapher
+remark = Welcome to the SmokePing website. \
+         Here you will learn all about the latency of our network.
+
+@include /etc/smokeping/config.d/librenms-targets.conf

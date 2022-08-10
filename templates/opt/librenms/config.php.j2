@@ -24,6 +24,7 @@ $config['rrdcached']       = "{{ librenms_rrdcached }}";
 {% endif %}
 $config['rrdtool_version'] = "{{ librenms_rrdtool_version }}";
 
+
 ### Update configuration
 $config['update_channel'] = 'release';  # uncomment to follow the monthly release channel
 
@@ -88,4 +89,12 @@ $config['influxdb']['username'] = '{{ librenms_config_influxdb_username }}';
 $config['influxdb']['password'] = '{{ librenms_config_influxdb_password }}';
 $config['influxdb']['timeout'] = 0;
 $config['influxdb']['verifySSL'] = false;
+{% endif %}
+
+{% if librenms_config_enable_smokeping %}
+$config['smokeping']['dir'] = '/opt/librenms/rrd/smokeping';
+$config['smokeping']['pings'] = 20;
+$config['smokeping']['probes'] = 2;
+$config['smokeping']['integration'] = true;
+$config['smokeping']['url'] = 'smokeping/';
 {% endif %}

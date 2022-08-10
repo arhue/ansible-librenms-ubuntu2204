@@ -1,0 +1,3 @@
+*** Probes ***
+
+@include /etc/smokeping/config.d/librenms-probes.conf
