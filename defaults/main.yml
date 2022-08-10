@@ -16,6 +16,8 @@ librenms_packages:
   - acl
   - monitoring-plugins
   - nagios-plugins-contrib
+  - nagios-plugins
+  - nagios-plugins-extra
   - nginx-full
   - php-cli
   - php-curl
