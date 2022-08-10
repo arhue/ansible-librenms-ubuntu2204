@@ -23,7 +23,6 @@
   notify:
     - restart smokeping
 
-
 - name: Create /opt/librenms/rrd/smokeping directory if it does not exist
   ansible.builtin.file:
     path: /opt/librenms/rrd/smokeping
@@ -33,7 +32,6 @@
     mode: '0664'
   notify:
     - restart smokeping
-
 
 - name: Create /opt/librenms/rrd/smokeping/__cgi directory if it does not exist
   ansible.builtin.file:
@@ -45,10 +43,9 @@
   notify:
     - restart smokeping
 
-
 - name: Fix smokeping rrdcached config
   ansible.builtin.lineinfile:
-    path: /etc/smokeping
+    path: /etc/smokeping/config.d/pathnames
     regexp: '^datadir'
     line: datadir = /opt/librenms/rrd/smokeping
   notify:
@@ -56,7 +53,7 @@
 
 - name: Fix smokeping rrdcached config
   ansible.builtin.lineinfile:
-    path: /etc/smokeping
+    path: /etc/smokeping/config.d/pathnames
     regexp: '^dyndir'
     line: dyndir = /opt/librenms/rrd/smokeping/__cgi
   notify:
