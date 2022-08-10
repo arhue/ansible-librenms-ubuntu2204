@@ -55,7 +55,7 @@
   ansible.builtin.lineinfile:
     path: /etc/smokeping/config.d/pathnames
     regexp: '^dyndir'
-    line: /usr/share/smokeping/www/
+    line: dyndir = /usr/share/smokeping/www/
   notify:
     - restart smokeping
 
