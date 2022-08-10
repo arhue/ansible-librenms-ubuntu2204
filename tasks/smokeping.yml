@@ -17,9 +17,9 @@
     owner: root
     group: root
     mode: 0644
- loop:
-   - Probes
-   - Targets
+  loop:
+    - Probes
+    - Targets
   notify:
     - restart smokeping
 
