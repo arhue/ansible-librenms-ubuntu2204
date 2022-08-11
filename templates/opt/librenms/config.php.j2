@@ -74,9 +74,11 @@ $config['ignore_mount'][] = "{{ ignore_mount }}";
 $config['ignore_mount_regexp'][] = "{{ ignore_mount_regexp }}";
 {% endfor %}
 
-# Enable service menu
+# Enable services
 $config['show_services']           = 1;
 $config['nagios_plugins']   = "/usr/lib/nagios/plugins";
+$config['discover_services']           = true;
+$config['discover_services_templates']           = true;
 
 {% if librenms_config_influxdb_enable %}
 # configure influxdb
