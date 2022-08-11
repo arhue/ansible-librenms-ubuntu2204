@@ -19,3 +19,11 @@
       - fcgiwrap
     cache_valid_time: 3600
   when: librenms_config_enable_smokeping
+
+- name: install syslog packages
+  ansible.builtin.apt:
+    name: syslog-ng
+    cache_valid_time: 3600
+  when: librenms_config_enable_syslog
+
+

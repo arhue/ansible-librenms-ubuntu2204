@@ -32,6 +32,12 @@
     - smokeping
   when: librenms_config_enable_smokeping
 
+- name: Setup Syslog
+  ansible.builtin.import_tasks: syslog.yml
+  tags:
+    - syslog
+  when: librenms_config_enable_smokeping
+
 - name: Configure librenms.
   ansible.builtin.import_tasks: librenms-config.yml
   tags:

@@ -151,6 +151,9 @@ librenms_config_ldap: false
 #Enables, disables Smokeping
 librenms_config_enable_smokeping: false
 
+#Enables, disables Syslog monitoring
+librenms_config_enable_syslog: false
+
 # Enables, disables proxmox in librenms
 librenms_config_enable_proxmox: 1
 

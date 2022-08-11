@@ -14,6 +14,8 @@ This role supports configuring
 * proxmox
 * influxdb
 * ldap
+* smokeping
+* syslog-ng
 
 The default credentials for the installation are `admin` / `admin`.
 

@@ -1,0 +1,15 @@
+- name: Librenms syslog config
+  ansible.builtin.copy:
+    src: syslog-ng.conf
+    dest: /etc/syslog-ng/syslog-ng.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart syslog
+
+- name: Enable services
+  ansible.builtin.service:
+    name: syslog-ng
+    state: started
+    enabled: yes

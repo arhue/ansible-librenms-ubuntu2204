@@ -100,3 +100,9 @@ $config['smokeping']['probes'] = 2;
 $config['smokeping']['integration'] = true;
 $config['smokeping']['url'] = 'smokeping/';
 {% endif %}
+
+{% if librenms_config_enable_syslog %}
+$config['enable_syslog'] = 1;
+{% endif %}
+
+
