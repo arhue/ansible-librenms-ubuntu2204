@@ -2,6 +2,7 @@
 # {{ ansible_managed }}
 ## Have a look in defaults.inc.php for examples of settings you can set here. DO NOT EDIT defaults.inc.php!
 
+$config[‘alert’][‘macros’][‘rule’][‘business_hours’] = ‘(HOUR(now()) >= 7 AND HOUR(now()) <= 18) AND WEEKDAY(now()) <= 4’;
 ### Database config
 $config['db_host']    = 'localhost';
 $config['db_port']    = '3306';
